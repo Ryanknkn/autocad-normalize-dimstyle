@@ -1,0 +1,4 @@
+interface:
+  display_name: "AutoCAD 尺寸样式标准化"
+  short_description: "后台备份并统一 ISO-25、句点小数及 DIM 图层"
+  default_prompt: "使用 $autocad-normalize-dimstyle 在后台备份并统一指定 DWG 的尺寸样式与图层。"
