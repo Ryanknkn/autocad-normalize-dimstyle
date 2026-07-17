@@ -368,6 +368,8 @@ try {
         extension_line_color = 'ByLayer'
         dimension_text_color = 'ByLayer'
         decimal_separator = $verifyReport['DIMDSEP']
+        dimension_precision = '0.0'
+        dimension_decimal_places = [int]$verifyReport['DIMDEC']
         dimension_layer = $verifyReport['DIMENSION_LAYER']
         dimension_layer_mismatch_count = [int]$verifyReport['LAYER_MISMATCH_COUNT']
         text_style = $verifyReport['TEXT_STYLE']

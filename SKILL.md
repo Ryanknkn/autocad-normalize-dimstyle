@@ -1,6 +1,6 @@
 ---
 name: autocad-normalize-dimstyle
-description: Back up and normalize one AutoCAD DWG in a separate invisible AutoCAD instance. Use when the user asks to standardize dimension styles, consolidate dimensions into ISO-25, remove unused dimension styles, force a period decimal separator, move dimension annotations to the DIM layer, process dimensions inside layouts or block definitions, or fix inconsistent dimension text, arrows, scale, or ByLayer colors without interrupting the foreground AutoCAD session.
+description: Back up and normalize one AutoCAD DWG in a separate invisible AutoCAD instance. Use when the user asks to standardize dimension styles, consolidate dimensions into ISO-25, remove unused dimension styles, force 0.0 linear precision with a period decimal separator, move dimension annotations to the DIM layer, process dimensions inside layouts or block definitions, or fix inconsistent dimension text, arrows, scale, or ByLayer colors without interrupting the foreground AutoCAD session.
 ---
 
 # AutoCAD Normalize Dimstyle
@@ -21,6 +21,7 @@ Obtain the exact path of one DWG. Confirm that the user authorizes modifying tha
 - Dimension line color: ByLayer
 - Extension line color: ByLayer
 - Dimension text color: ByLayer
+- Linear dimension precision: `0.0` (`DIMDEC=1`)
 - Decimal separator: period (`.`)
 - Dimension annotation layer: `DIM`; create it when absent
 - Dimension text-style fixed height: `0`
@@ -63,7 +64,7 @@ The bundled AutoLISP performs this sequence:
 6. Copy `MHSA-DIM` settings into the original local `ISO-25`.
 7. Assign all internal references to the real `ISO-25`; remove overrides again.
 8. Delete `MHSA-DIM` and every other removable local dimension style.
-9. Verify that internal references use `ISO-25`, are on `DIM`, use a period decimal separator, required parameters match, no overrides remain, and no other local dimension styles remain.
+9. Verify that internal references use `ISO-25`, are on `DIM`, use `0.0` precision with a period decimal separator, required parameters match, no overrides remain, and no other local dimension styles remain.
 10. Save to a temporary DWG, reopen in the invisible AutoCAD instance, and verify again.
 11. Replace the original only after the temporary DWG passes verification.
 
@@ -78,7 +79,7 @@ Read the JSON emitted by the PowerShell script. Report:
 - deleted style count;
 - retained Xref names and Xref-dependent styles;
 - final ISO-25 parameters;
-- the decimal separator and dimension layer;
+- the `0.0` precision, decimal separator, and dimension layer;
 - success, restoration, or failure status.
 
 Do not claim success unless the post-save verification status is `SUCCESS`.

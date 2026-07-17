@@ -381,6 +381,7 @@
   (setvar "DIMCLRE" 256)
   (setvar "DIMCLRT" 256)
   (setvar "DIMDSEP" ".")
+  (setvar "DIMDEC" 1)
   (setq text-style-name (getvar "DIMTXSTY"))
   (setq text-style
     (cnd:item (vla-get-TextStyles document) text-style-name)
@@ -426,6 +427,9 @@
   (if (/= (getvar "DIMDSEP") ".")
     (setq errors (cons "DIMDSEP" errors))
   )
+  (if (/= (getvar "DIMDEC") 1)
+    (setq errors (cons "DIMDEC" errors))
+  )
   (setq text-style-name (getvar "DIMTXSTY"))
   (setq text-style
     (cnd:item (vla-get-TextStyles document) text-style-name)
@@ -451,6 +455,7 @@
     (cons 'dimclre (getvar "DIMCLRE"))
     (cons 'dimclrt (getvar "DIMCLRT"))
     (cons 'dimdsep (getvar "DIMDSEP"))
+    (cons 'dimdec (getvar "DIMDEC"))
     (cons 'text-style text-style-name)
     (cons 'text-style-height text-style-height)
   )
@@ -748,6 +753,7 @@
     (cons "DIMCLRE" (cdr (assoc 'dimclre final-check)))
     (cons "DIMCLRT" (cdr (assoc 'dimclrt final-check)))
     (cons "DIMDSEP" (cdr (assoc 'dimdsep final-check)))
+    (cons "DIMDEC" (cdr (assoc 'dimdec final-check)))
     (cons "DIMENSION_LAYER" layer-name)
     (cons "TEXT_STYLE" (cdr (assoc 'text-style final-check)))
     (cons "TEXT_STYLE_HEIGHT"
@@ -824,6 +830,7 @@
     (cons "DIMCLRE" (cdr (assoc 'dimclre check)))
     (cons "DIMCLRT" (cdr (assoc 'dimclrt check)))
     (cons "DIMDSEP" (cdr (assoc 'dimdsep check)))
+    (cons "DIMDEC" (cdr (assoc 'dimdec check)))
     (cons "DIMENSION_LAYER" layer-name)
     (cons "TEXT_STYLE" (cdr (assoc 'text-style check)))
     (cons "TEXT_STYLE_HEIGHT"
